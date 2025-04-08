@@ -1,22 +1,29 @@
 
-import React, {useState} from "react";
+//import React, {useState} from "react";
+import React from "react";
 
+type Props = {
+    selectedGenres:string[];
+    setGenreFilter: (genres:string[]) => void;
+}
+const GenreFilter: React.FC<Props>= ({selectedGenres,setGenreFilter}) => {
 const genres = ["Action", "Comedy", "Horror", "Sci-fi", "Drama", "Romcom"];
 
-const GenreFilter: React.FC = () => {
-    const[selectedGenres, setSelectedGenres] = useState<string[]>([]);
+
 
     const toggleGenre = (genre: string) => {
-        setSelectedGenres((prev) => 
-        prev.includes(genre) ? prev.filter((g) => g! == genre): [...prev, genre]
-    );
+        if(selectedGenres.includes(genre)){
+        setGenreFilter(selectedGenres.filter((g) => g!== genre));
+        }else{
+            setGenreFilter([...selectedGenres,genre]);
+        }
     };
 
     return(
         <div>
-            <h4>Filter by Genre:</h4>
+            <h4>Filter by Genre</h4>
             {genres.map((genre) => (
-                <label key = {genre}>
+                <label key = {genre} style={{marginRight:"10px"}}>
                     <input
                     type = "checkbox"
                     value= {genre}

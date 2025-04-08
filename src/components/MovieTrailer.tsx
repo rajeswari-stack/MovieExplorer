@@ -3,7 +3,6 @@ import videoplayback from "../assets/videoplayback.mp4";
 
 const MovieTrailer: React.FC = () => {
   
-
   return (
     <div
       className="trailer">
